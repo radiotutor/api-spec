@@ -1,0 +1,73 @@
+{
+  "title": "question",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://github.com/api-spec/quiz/1/data/question.json",
+  "type": "object",
+  "description": "A question in v1.x of the quiz API",
+  "$defs": {
+    "answer": {
+      "required": [
+        "Text"
+      ],
+      "type": "object"
+    },
+    "imageRef": {
+      "example": "s3://2019_RSGB_F/1a15123b-b493-4d35-a2c9-5c5f4f118c7a.svg",
+      "description": "s3://<bucket-name>/<key>",
+      "title": "The URI of the relevant image",
+      "type": "string"
+    },
+    "properties": {
+      "ImageRef": {
+        "$ref": "#/$defs/imageRef"
+      },
+      "Text": {
+        "title": "The text of the answer",
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "UUID",
+    "Bank",
+    "Text",
+    "Answers",
+    "CorrectAnswer"
+  ],
+  "optional": [
+    "ImageRef",
+    "SyllabusRef",
+    "NumberOfQuestions"
+  ],
+  "properties": {
+    "Bank": {
+      "example": "2019_RSGB_F.1",
+      "description": "[EXAM_CODE, string].[CatagoryCode, string](.userid, string)",
+      "title": "Question bank, to be associated with section quizzes (primarily for database cleverness)",
+      "type": "string"
+    },
+    "CorrectAnswer": {
+      "description": "Cannot be greater than number of answers - 1",
+      "title": "the zero index of the correct answer in Answers",
+      "type": "integer"
+    },
+    "ImageRef": {
+      "$ref": "#/$defs/imageRef"
+    },
+    "NumberOfQuestions": {
+      "default": 4,
+      "example": 4,
+      "title": "The question type reference (for future expansion)",
+      "type": "integer"
+    },
+    "Answers": {
+      "items": [
+        {
+          "$ref": "#/$defs/answer"
+        }
+      ],
+      "title": "an array of the possible answers",
+      "type": "array"
+    }
+  }
+}
