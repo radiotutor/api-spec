@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://github.com/api-spec/quiz/1/data/unrenderedQuiz.json",
+  "type": "object",
+  "title": "unrenderedQuiz",
+  "description": "An unrendered quiz in v1.x of the quiz API",
+  "examples": [
+    {
+      "Count": 1,
+      "Done": false,
+      "Questions": [
+        {
+          "UUID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+          "Answer": 1
+        }
+      ]
+    }
+  ],
+  "required": [
+    "Count",
+    "Questions"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "Count": {
+      "$id": "#/properties/Count",
+      "type": "integer",
+      "title": "The Count",
+      "description": "Number of Questions",
+      "default": 0,
+      "examples": [
+        1
+      ]
+    },
+    "Done": {
+      "$id": "#/properties/Done",
+      "type": "boolean",
+      "title": "The Done schema",
+      "description": "An explanation about the purpose of this instance.",
+      "default": false,
+      "examples": [
+        false
+      ]
+    },
+    "Questions": {
+      "$id": "#/properties/Question",
+      "type": "array",
+      "title": "The Question",
+      "default": [],
+      "examples": [
+        [
+          {
+            "UUID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "Answer": 1
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/Questions/q",
+        "type": "object",
+        "title": "The first anyOf schema",
+        "description": "An explanation about the purpose of this instance.",
+        "default": {},
+        "examples": [
+          {
+            "UUID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            "Answer": 1
+          }
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "UUID": {
+            "$id": "#/properties/Question/items/q/properties/UUID",
+            "type": "string",
+            "title": "The UUID of the Question",
+            "default": "",
+            "examples": [
+              "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+            ]
+          },
+          "Answer": {
+            "$id": "#/properties/Question/items/anyOf/0/properties/Answer",
+            "type": "integer",
+            "title": "The answer given",
+            "description": "MUST be given if the quiz is done",
+            "default": 1,
+            "examples": [
+              false
+            ]
+          }
+        }
+      }
+    }
+  },
+  "if": {
+    "properties": {
+      "Done": {
+        "enum": [
+          true
+        ]
+      }
+    },
+    "required": [
+      "Done"
+    ]
+  },
+  "then": {
+    "properties": {
+      "Questions": {
+        "items": {
+          "required": [
+            "UUID",
+            "Answer"
+          ]
+        }
+      }
+    }
+  },
+  "else": {
+    "properties": {
+      "Questions": {
+        "items": {
+          "required": [
+            "UUID"
+          ]
+        }
+      }
+    }
+  }
+}

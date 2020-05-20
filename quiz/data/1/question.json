@@ -40,6 +40,16 @@
     "NumberOfQuestions"
   ],
   "properties": {
+    "UUID": {
+        "title": "UUID of question",
+        "type": "string",
+        "format": "uuid"
+    },
+    "Text": {
+        "title": "The question",
+        "type": "string",
+        "format": "uuid"
+    },
     "Bank": {
       "example": "2019_RSGB_F.1",
       "description": "[EXAM_CODE, string].[CatagoryCode, string](.userid, string)",
