@@ -42,25 +42,25 @@
   ],
   "properties": {
     "UUID": {
-        "title": "UUID of question",
-        "type": "string",
-        "format": "uuid"
+      "title": "UUID of question",
+      "type": "string",
+      "format": "uuid"
     },
     "Text": {
-        "title": "The question",
-        "type": "string",
-        "format": "uuid"
+      "title": "The question",
+      "type": "string",
+      "format": "uuid"
     },
     "Bank": {
       "example": "2019_RSGB_F.1",
       "title": "Question bank, to be associated with section quizzes, used for origin",
       "type": "string"
     },
-		"Owner": {
-			"title": "The user who wrote the quiz question",
-			"description": "The username of the person who wrote the question",
-			"type": "string"
-		},
+    "Owner": {
+      "title": "The user who wrote the quiz question",
+      "description": "The username of the person who wrote the question",
+      "type": "string"
+    },
     "CorrectAnswer": {
       "description": "Cannot be greater than number of answers - 1",
       "title": "the zero index of the correct answer in Answers",
